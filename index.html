@@ -33,23 +33,22 @@
       font-size: 24px;
       color: #333;
     }
-    .login-screen input[type="password"] {
-      width: 300px;
+    .login-screen input[type="password"],
+    .login-screen button {
+      width: 300px; /* X軸を統一 */
       padding: 10px;
       font-size: 16px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
+      margin: 0 auto 10px; /* 中央揃え */
       border-radius: 5px;
+      display: block; /* 同じボックス扱い */
+    }
+    .login-screen input[type="password"] {
+      border: 1px solid #ddd;
     }
     .login-screen button {
-      width: 300px; /* 入力欄と同じ長さ */
-      padding: 10px;
-      font-size: 16px;
       color: #333;
       background: #ffd700; /* 初期状態の色 */
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
       background-size: 200% 100%;
       background-image: linear-gradient(to right, #ffd700 0%, #e6c200 50%, #ffd700 100%);
       transition: background-position 0.5s ease;
