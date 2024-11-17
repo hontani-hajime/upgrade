@@ -42,18 +42,20 @@
       border-radius: 5px;
     }
     .login-screen button {
-      width: 300px;
+      width: 300px; /* 入力欄と同じ長さ */
       padding: 10px;
       font-size: 16px;
       color: #333;
-      background-color: #ffd700; /* 金色 */
+      background: #ffd700; /* 初期状態の色 */
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.5s ease;
+      background-size: 200% 100%;
+      background-image: linear-gradient(to right, #ffd700 0%, #e6c200 50%, #ffd700 100%);
+      transition: background-position 0.5s ease;
     }
-    .login-screen button:hover {
-      background-color: #e6c200; /* ホバー時の濃い金色 */
+    .login-screen button:active {
+      background-position: 100% 0;
     }
     .login-screen .error {
       color: red;
@@ -156,8 +158,8 @@
     loginButton.addEventListener("click", () => {
       const enteredPassword = document.getElementById("password").value;
       if (enteredPassword === correctPassword) {
-        // ボタンの色が濃くなるアニメーション
-        loginButton.style.backgroundColor = "#e6c200";
+        // ボタンの色が左から右へ濃くなる
+        loginButton.classList.add("active");
         setTimeout(() => {
           // ログイン画面をフェードアウトしてメイン画面を表示
           loginScreen.style.display = "none";
