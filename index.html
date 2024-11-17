@@ -14,69 +14,6 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
-      overflow: hidden;
-    }
-    .login-screen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      height: 100vh;
-      background-color: #ffffff;
-    }
-    .login-left img {
-      width: 150px;
-    }
-    .login-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-left: 30px;
-    }
-    .login-right h1 {
-      margin: 0 0 20px;
-      font-size: 24px;
-      color: #333;
-    }
-    .login-right input[type="password"] {
-      width: 300px;
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    .login-right button {
-      width: 300px;
-      padding: 10px;
-      font-size: 16px;
-      color: #333;
-      background-color: #ffd700; /* 金色 */
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.5s ease;
-    }
-    .login-right button:hover {
-      background-color: #e6c200; /* ホバー時の濃い金色 */
-    }
-    .login-right .checkbox-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .login-right .checkbox-container input[type="checkbox"] {
-      margin-right: 5px;
-    }
-    .login-right .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .main-content {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
     }
     header {
       display: flex;
@@ -121,90 +58,34 @@
       padding: 5px 10px;
       font-size: 14px;
       color: #333;
-      background-color: #ffd700;
-      border: none;
+      background-color: #ffd700; /* 金色 */
+      border: 1px solid #ffd700;
       border-radius: 3px;
       cursor: pointer;
     }
     header .search button:hover {
-      background-color: #e6c200;
+      background-color: #e6c200; /* ホバー時の少し濃い金色 */
+    }
+    main {
+      margin-top: 70px; /* ヘッダーの高さ分余白を追加 */
+      padding: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- ログイン画面 -->
-  <div class="login-screen" id="login-screen">
-    <div class="login-left">
+  <header>
+    <div class="logo">
       <img src="https://hontani-hajime.github.io/upgrade/upgrade-logo.JPG" alt="ロゴ">
+      <div class="title">本谷元｜グレードアップ</div>
     </div>
-    <div class="login-right">
-      <h1>グレードアップログイン</h1>
-      <input type="password" id="password" placeholder="パスワードを入力">
-      <div class="checkbox-container">
-        <input type="checkbox" id="remember-me">
-        <label for="remember-me">ログイン状態を保持</label>
-      </div>
-      <button id="login-button">ログイン</button>
-      <div class="error" id="error-message" style="display: none;">パスワードが違います</div>
+    <div class="search">
+      <input type="text" placeholder="検索...">
+      <button>検索</button>
     </div>
-  </div>
-
-  <!-- メインコンテンツ -->
-  <div class="main-content" id="main-content">
-    <header>
-      <div class="logo">
-        <img src="https://hontani-hajime.github.io/upgrade/upgrade-logo.JPG" alt="ロゴ">
-        <div class="title">本谷元｜グレードアップ</div>
-      </div>
-      <div class="search">
-        <input type="text" placeholder="検索...">
-        <button>検索</button>
-      </div>
-    </header>
-    <main>
-      <h1>ようこそ、グレードアップへ</h1>
-      <p>ここにメインコンテンツを追加してください。</p>
-    </main>
-  </div>
-
-  <script>
-    const correctPassword = "xctsw2zP2Z!!!";
-    const loginScreen = document.getElementById("login-screen");
-    const mainContent = document.getElementById("main-content");
-    const loginButton = document.getElementById("login-button");
-    const errorMessage = document.getElementById("error-message");
-    const rememberMe = document.getElementById("remember-me");
-
-    // ページ読み込み時、ログイン状態を確認
-    if (localStorage.getItem("loggedIn") === "true") {
-      showMainContent();
-    }
-
-    loginButton.addEventListener("click", () => {
-      const enteredPassword = document.getElementById("password").value;
-      if (enteredPassword === correctPassword) {
-        if (rememberMe.checked) {
-          localStorage.setItem("loggedIn", "true");
-        }
-        // ボタンの色が濃くなるアニメーション
-        loginButton.style.backgroundColor = "#e6c200";
-        setTimeout(() => {
-          // ログイン画面をフェードアウトしてメイン画面を表示
-          showMainContent();
-        }, 500);
-      } else {
-        // パスワードが間違っている場合のエラーメッセージ
-        errorMessage.style.display = "block";
-      }
-    });
-
-    function showMainContent() {
-      loginScreen.style.display = "none";
-      mainContent.style.display = "block";
-      setTimeout(() => {
-        mainContent.style.opacity = 1;
-      }, 10);
-    }
-  </script>
+  </header>
+  <main>
+    <h1>ようこそ、グレードアップへ</h1>
+    <p>ここにメインコンテンツを追加してください。</p>
+  </main>
 </body>
 </html>
