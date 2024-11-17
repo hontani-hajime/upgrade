@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="グレードアップ">
@@ -14,6 +14,56 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
+      overflow: hidden;
+    }
+    .login-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+    }
+    .login-screen img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+    .login-screen h1 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #333;
+    }
+    .login-screen input[type="password"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .login-screen button {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      color: #333;
+      background-color: #ffd700; /* 金色 */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+    }
+    .login-screen button:hover {
+      background-color: #e6c200; /* ホバー時の濃い金色 */
+    }
+    .login-screen .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .main-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
     header {
       display: flex;
@@ -58,34 +108,69 @@
       padding: 5px 10px;
       font-size: 14px;
       color: #333;
-      background-color: #ffd700; /* 金色 */
-      border: 1px solid #ffd700;
+      background-color: #ffd700;
+      border: none;
       border-radius: 3px;
       cursor: pointer;
     }
     header .search button:hover {
-      background-color: #e6c200; /* ホバー時の少し濃い金色 */
-    }
-    main {
-      margin-top: 70px; /* ヘッダーの高さ分余白を追加 */
-      padding: 20px;
+      background-color: #e6c200;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="https://hontani-hajime.github.io/upgrade/upgrade-logo.JPG" alt="ロゴ">
-      <div class="title">本谷元｜グレードアップ</div>
-    </div>
-    <div class="search">
-      <input type="text" placeholder="検索...">
-      <button>検索</button>
-    </div>
-  </header>
-  <main>
-    <h1>ようこそ、グレードアップへ</h1>
-    <p>ここにメインコンテンツを追加してください。</p>
-  </main>
+  <!-- ログイン画面 -->
+  <div class="login-screen" id="login-screen">
+    <img src="https://hontani-hajime.github.io/upgrade/upgrade-logo.JPG" alt="ロゴ">
+    <h1>グレードアップログイン</h1>
+    <input type="password" id="password" placeholder="パスワードを入力">
+    <button id="login-button">ログイン</button>
+    <div class="error" id="error-message" style="display: none;">パスワードが違います</div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <div class="main-content" id="main-content">
+    <header>
+      <div class="logo">
+        <img src="https://hontani-hajime.github.io/upgrade/upgrade-logo.JPG" alt="ロゴ">
+        <div class="title">本谷元｜グレードアップ</div>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="検索...">
+        <button>検索</button>
+      </div>
+    </header>
+    <main>
+      <h1>ようこそ、グレードアップへ</h1>
+      <p>ここにメインコンテンツを追加してください。</p>
+    </main>
+  </div>
+
+  <script>
+    const correctPassword = "xctsw2zP2Z!!!";
+    const loginScreen = document.getElementById("login-screen");
+    const mainContent = document.getElementById("main-content");
+    const loginButton = document.getElementById("login-button");
+    const errorMessage = document.getElementById("error-message");
+
+    loginButton.addEventListener("click", () => {
+      const enteredPassword = document.getElementById("password").value;
+      if (enteredPassword === correctPassword) {
+        // ボタンの色が濃くなるアニメーション
+        loginButton.style.backgroundColor = "#e6c200";
+        setTimeout(() => {
+          // ログイン画面をフェードアウトしてメイン画面を表示
+          loginScreen.style.display = "none";
+          mainContent.style.display = "block";
+          setTimeout(() => {
+            mainContent.style.opacity = 1;
+          }, 10);
+        }, 500);
+      } else {
+        // パスワードが間違っている場合のエラーメッセージ
+        errorMessage.style.display = "block";
+      }
+    });
+  </script>
 </body>
 </html>
