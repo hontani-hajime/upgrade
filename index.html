@@ -33,28 +33,27 @@
       font-size: 24px;
       color: #333;
     }
-    .login-screen input[type="password"],
-    .login-screen button {
-      width: 300px; /* X軸を統一 */
+    .login-screen input[type="password"] {
+      width: 300px;
       padding: 10px;
       font-size: 16px;
-      margin: 0 auto 10px; /* 中央揃え */
-      border-radius: 5px;
-      display: block; /* 同じボックス扱い */
-    }
-    .login-screen input[type="password"] {
+      margin-bottom: 10px;
       border: 1px solid #ddd;
+      border-radius: 5px;
     }
     .login-screen button {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
       color: #333;
-      background: #ffd700; /* 初期状態の色 */
+      background-color: #ffd700; /* 金色 */
       border: none;
-      background-size: 200% 100%;
-      background-image: linear-gradient(to right, #ffd700 0%, #e6c200 50%, #ffd700 100%);
-      transition: background-position 0.5s ease;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
     }
-    .login-screen button:active {
-      background-position: 100% 0;
+    .login-screen button:hover {
+      background-color: #e6c200; /* ホバー時の濃い金色 */
     }
     .login-screen .error {
       color: red;
@@ -157,8 +156,8 @@
     loginButton.addEventListener("click", () => {
       const enteredPassword = document.getElementById("password").value;
       if (enteredPassword === correctPassword) {
-        // ボタンの色が左から右へ濃くなる
-        loginButton.classList.add("active");
+        // ボタンの色が濃くなるアニメーション
+        loginButton.style.backgroundColor = "#e6c200";
         setTimeout(() => {
           // ログイン画面をフェードアウトしてメイン画面を表示
           loginScreen.style.display = "none";
